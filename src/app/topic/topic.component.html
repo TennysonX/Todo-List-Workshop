@@ -8,7 +8,10 @@
         </button>
     </div>
     @for(topic of topics; track $index) {
-      <div class="alert alert-secondary">{{ topic.topic }}</div>
+      <div class="alert alert-secondary">
+        <i class="bi bi-x-circle-fill" (click)="onRemoveTopic(topic.id)"></i>
+        <span (click)="onSelectTopic(topic.id)">{{ topic.topic }}</span>
+      </div>
     }
 
 </div>

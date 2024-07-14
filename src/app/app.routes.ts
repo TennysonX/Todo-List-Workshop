@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
 
 export const routes: Routes = [
     { path: '', component: TopicComponent },
-    { path: 'list', component: ListComponent}
+    { path: 'list/:topicId', component: ListComponent}
 ];

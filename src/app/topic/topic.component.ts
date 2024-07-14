@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,10 @@ export class TopicComponent {
 
   topic = new FormControl('')
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router) 
+    {
 
     this.loadTopics()
 
@@ -40,5 +44,21 @@ export class TopicComponent {
         console.log(result)
       }
     })
+  }
+
+  onRemoveTopic(id: number){
+    console.log(id)
+    this.http.delete(`${this.service_url}/${id}`).subscribe({
+      next: (result) => {
+        console.log(result)
+        this.loadTopics()
+      }
+    })
+
+  }
+
+  onSelectTopic(id: number) {
+    console.log(id)
+    this.router.navigate(['/list',id])
   }
 }
