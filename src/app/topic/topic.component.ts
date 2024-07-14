@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -18,7 +17,19 @@ export class TopicComponent {
   topic = new FormControl('')
 
   constructor(private http: HttpClient) {
+
+    this.loadTopics()
+
   }
+  loadTopics(){
+
+    this.http.get(this.service_url).subscribe({
+      next: (result) => {
+        this.topics = result
+      }
+    })
+  }
+
 
   onAddTopic(){
     let body = {
